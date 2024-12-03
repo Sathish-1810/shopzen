@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<div class  = "aboutuscontainer"> 
+<div class = "aboutheader">
+<h1>About Us</h1>
+<p>Learn more about our journey and team</p>
+</div>
+{% comment %} leftsidecontenent {% endcomment %}
+ <div class = "rhcontainer">
+<div class = "leftsideheader">
+    <div class= "leftsidecontent">
+        <h1>Shop Zen</h1> 
+    <p>Welcome to Shop Zen, your online sanctuary for finding products
+         that bring balance, tranquility, and a touch of mindfulness
+          to your life. At Shop Zen, we believe that creating a peaceful
+           environment at home or work is essential
+         to maintaining well-being in today’s fast-paced world.</p>    
+        
+      </div>
+</div>
+
+{% comment %} rightsidecontent {% endcomment %}
+<div class = "rightsideheader">
+    <div class= "rightsidecontent">
+        <h1>Our Journey</h1> 
+    <p>Our journey began with a simple idea: to offer 
+        products that help people unwind, destress, 
+        and reconnect with themselves. What started as 
+        a passion project grew into a trusted platform 
+        where customers can find items that inspire moments 
+        of calm and mindfulness. From thoughtfully crafted 
+        candles and soothing essential oils to meditation aids 
+        and natural home décor, each product in our collection is chosen
+         with care to enrich your space and elevate your lifestyle.</p>    
+        <h1>Our misson</h1>
+        <p>Our Mission
+            To help individuals create spaces that foster inner peace and mindful living through high-quality, sustainable products that inspire harmony.
+            Join us on a journey to simplicity and serenity. Whether you’re setting up your meditation corner, looking for unique gifts that show you care, or 
+            simply wanting to bring more calm into your
+         day-to-day life, Shop Zen is here to be your guide.</p>
+      </div>
+</div>
+</div>
+{% comment %} ourteamkosam {% endcomment %}
+
+        <div class="teamcards">
+            <div class = "teamheading"><h1>Our Team </h1></div>
+            {% for teammember in team_members %}
+            <div class="teamcard">
+                <img src="{{ teammember.image.url }}" alt="{{ teammember.name }}">
+                <div class="memberinfo">
+                    <h2 >Name : {{teammember.name }}</h2>
+                    <h2>Designation : {{ teammember.designation}}</h2>
+                   
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+
+</div>
+
+
+
+
+<script src="{% static 'script.js' %}" async defer></script>
+</body>
+</html>

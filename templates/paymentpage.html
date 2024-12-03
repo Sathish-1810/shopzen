@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<div class="paymentmethods">
+    <h1>Payment Page</h1>
+    <h3>Select Payment Method</h3>
+    <!-- Form for selecting payment method -->
+    <form method="post" action="{% url 'payment_page' %}">
+        {% csrf_token %}
+        <label for="credit_card">Credit/Debit Card</label>
+        <input type="radio" id="credit_card" name="payment_method" value="credit_card" required>
+        
+        <label for="paypal">PayPal</label>
+        <input type="radio" id="paypal" name="payment_method" value="paypal">
+        
+        <button type="submit" class="pay-button">Pay Now</button>
+    </form>
+</div>
+
+<script src="{% static 'script.js' %}" async defer></script>
+</body>
+</html>

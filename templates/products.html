@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1 class="productheading">Our Products</h1>
+
+    <!-- Filter Form -->
+    <form method="get" class="filter-form">
+        <label for="category">Category:</label>
+        <select name="category" id="category">
+            <option value="">All Categories</option>
+            {% for value, label in categories %}
+            <option value="{{ value }}" {% if request.GET.category == value %}selected{% endif %}>
+                {{ label }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label for="min_price">Min Price:</label>
+        <input type="number" name="min_price" id="min_price" value="{{ request.GET.min_price }}" placeholder="e.g., 500">
+
+        <label for="max_price">Max Price:</label>
+        <input type="number" name="max_price" id="max_price" value="{{ request.GET.max_price }}" placeholder="e.g., 5000">
+
+        <button type="submit" class="filter-btn">Filter</button>
+    </form>
+  
+    
+    <!-- Product Cards -->
+    <div class="product-cards">
+        {% for product in products %}
+        <div class="product-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="product-info">
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <p class="price">Price: ₹{{ product.price }}</p>
+                <form action="{% url 'add_to_cart' product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="buy-now-btn">ADD CART</button>
+                </form>
+            </div>
+        </div>
+        {% empty %}
+        <p>No products match your filters.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

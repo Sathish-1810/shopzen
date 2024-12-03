@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+<div class="mycart">
+    <h1>Your Cart</h1>
+    <ul>
+        {% for item in cart_items %}
+            <li>
+                <div class="cart-item">
+                    <!-- Display product image -->
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" >
+                    
+                    <!-- Display product name and quantity form -->
+                    <h2>{{ item.product.name }}</h2>
+                    <form action="{% url 'update_cart' item.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        
+                        <p> Quantity : <input type="number" name="quantity" value="{{ item.quantity }}" min="1"></p>
+                        
+                        <button type="submit">Update</button>
+                    </form>
+                    
+                    <!-- Display price and remove link -->
+                     Price: {{ item.get_total_price }} INR
+                    <a href="{% url 'remove_from_cart' item.id %}">Remove</a>
+                </div>
+            </li>
+        {% endfor %}
+        
+    </ul>
+    <h2>Total: {{ total_price }} INR</h2>
+    
+    
+    <form action="{% url 'payment_page' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" id="payNowButton" class="pay-button">Pay Now</button>
+    </form>
+    
+
+
+</div>
+<script src="{% static 'script.js' %}" async defer></script>
+</body>
+</html>

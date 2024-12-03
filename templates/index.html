@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <head>
+        <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+        <meta charset="utf-8">
+        <link rel="icon" href="{% static 'favicon.jpg' %}" type="image/jpg">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <div class="navbar">
+            <h1 class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo" /></h1>
+            <ul>
+                <li><a href="#" id="home">Home</a></li>
+                <li><a href="#" id="products" onclick="productspage()">Products</a></li>
+                <li><a href="#" onclick="aboutuspage()">AboutUs</a></li>
+                <li><a href="#" onclick="contactuspage()">Contactus</a></li>
+              
+                {% if user.is_authenticated %}
+                    <!-- Display Profile and Logout when logged in -->
+                   
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <!-- Display Login when not logged in -->
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+                
+            </ul>
+            <i class="ri-menu-line" id="menuIcon" aria-label="Menu" role="button"></i> <!-- Menu Icon -->
+
+        </div>
+       
+        {% comment %} ikkdada nundi main containent start avuthundi {% endcomment %}
+      
+        <div class="main">
+            <h1 class = 'bouncetext'>
+                Best Prices</h1>
+              <h2>Incredible Prices</h2>
+             <h3>on All Your Favorite Items</h3>
+
+             <a href="#" id="products" onclick="productspage()">ShopNow</a>
+        </div>
+        {% comment %} ikkdadatho end avtuthundi main content {% endcomment %}
+
+        {% comment %} start mainright side content {% endcomment %}
+        <div class = "rightmain">
+            <h1>ShopZen </h1>
+            <h2>a grand mall experience online</h2>
+            <p>Welcome to ShopZen, where shopping transforms from a task 
+                into a tranquil experience. At ShopZen, we believe 
+                that finding what you need should be as enjoyable and 
+                stress-free as possible. With a seamless interface and a carefully 
+                curated selection of high-quality products, we offer you the peace
+                 of mind that comes with easy, reliable shopping</p>
+                
+        </div>
+       
+    </div>
+    <div class="maincontainer">
+        <h2>Top Categories</h2>
+        <div class="card-container">
+            {% for category in categories %}
+            <div class="card">
+                <img src="{{ category.image.url }}" alt="{{ category.name }}" class="card-image">
+                <div class="card-content">
+                    <h1>{{ category.name }}</h1>
+                    <p>{{ category.description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p>No categories available.</p>
+            
+            {% endfor %}
+        </div>
+    </div>
+    
+    
+        {% comment %} END MAIN RIGHT SIDE CONTENT {% endcomment %}
+
+        
+{% comment %} discount page starts {% endcomment %}
+
+<div class="discountpage">
+    <div class="discount-container">
+        <div class="discountleft">
+            <div class="salenumber">
+                <h1> <span>30</span><sup>%</sup> OFF </h1>
+                <h2>SALE</h2>
+            </div>
+            <div class="salecontent">
+                <h1>Just hurry up limited offer!</h1>
+                <p>Separated they live in Bookmarksgrove right at the<br> coast of the Semantics, a large language ocean</p>
+               <a href="#" id="products" class="products" onclick="productspage()">ShopNow</a>
+            </div>
+        </div>
+        <div class="discountright">
+            <img src="{% static 'images/saleimg.png' %}" alt="saleimg">
+        </div>
+    </div>
+</div>
+
+ {% comment %} discount page ends here {% endcomment %}
+
+{% comment %} whyshopwithus page starts {% endcomment %}
+
+<div class = "whyshopwithus">
+    
+    <div class = "whyshopwithusheading"><h1>why shop with us </h1></div>
+    <div class = "whyshopcontainer">
+        <div class = "whyshopcard">
+            <i class="ri-truck-line"></i>
+            <h1>fast delivery </h1>
+            <p>Speed is our promise, delivery is our guarantee</p>
+        </div>
+        <div class = "whyshopcard">
+            <i class="ri-award-fill"></i>
+            <h1>best quality </h1>
+            <p>Exceptional quality, exceptional resultse</p>
+        </div>
+        <div class = "whyshopcard">
+            <i class="ri-shopping-cart-line"></i>
+            <h1>free shipping</h1>
+            <p>Enjoy free shipping on all orders!</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+ {% comment %} ends here {% endcomment %}
+
+
+
+
+
+
+{% comment %} website footer starts {% endcomment %}
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <p>We provide high-quality services to <br><br>help you achieve your goals. <br><br>Our mission is to deliver excellence<br> <br>with every project.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+            <li> <a href="#" id = "home" >Home</a></li>
+            <li> <a href="#" id = "products" onclick = "productspage()">Products</a></li>
+            <li> <a href="#" onclick = "aboutuspage()">AboutUs</a></li>
+            <li> <a href="#" onclick = "contactuspage()">Contactus</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p>Email: shopzen@gmail.com</p>
+        <p>Phone: +91 12345 67890</p>
+        <p>Address: visakhapatnam, India</p>
+      </div>
+      <a href="#" onclick = "contactuspage()" id="endpage">Contactus</a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 sathish1810| All Rights Reserved</p>
+    </div>
+  </footer>
+  
+
+
+{% comment %} website footer ends {% endcomment %}
+                
+        
+        <script src="{% static 'script.js' %}" async defer></script>
+    </body>
+</html>
