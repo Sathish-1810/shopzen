@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="otpverification">
+        <h2>OTP Verification</h2>
+
+        <!-- Display Messages (Success/Failure) -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        <form method="POST">
+            {% csrf_token %}
+            <label for="otp">Enter OTP:</label>
+            <input type="text" name="otp" id="otp" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+        
+        <!-- Resend OTP Button (only shows if OTP expired) -->
+        {% if otp_expired %}
+            <form method="POST" action="{% url 'resend_otp' %}">
+                {% csrf_token %}
+                <button type="submit">Resend OTP</button>
+            </form>
+        {% endif %}
+    </div>
+
+    <script src="{% static 'script.js' %}" async defer></script>
+</body>
+</html>
