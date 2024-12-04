@@ -3,8 +3,13 @@
 {% load static %}
 <head>
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <a href="{% url 'cart_detail' %}" class="btn btn-secondary">
+        View Cart <div id="cart-item-count">{{ cart_item_count }}</div>
+    </a>
+
     <h1 class="productheading">Our Products</h1>
 
     <!-- Filter Form -->
@@ -27,8 +32,7 @@
 
         <button type="submit" class="filter-btn">Filter</button>
     </form>
-  
-    
+
     <!-- Product Cards -->
     <div class="product-cards">
         {% for product in products %}
@@ -38,15 +42,40 @@
                 <h2>{{ product.name }}</h2>
                 <p>{{ product.description }}</p>
                 <p class="price">Price: ₹{{ product.price }}</p>
-                <form action="{% url 'add_to_cart' product.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="buy-now-btn">ADD CART</button>
-                </form>
+                <button class="buy-now-btn add-to-cart" data-product-id="{{ product.id }}">ADD TO CART</button>
             </div>
         </div>
         {% empty %}
         <p>No products match your filters.</p>
         {% endfor %}
     </div>
+
+    <!-- AJAX Script -->
+    <script>
+    $(document).ready(function() {
+        // When the Add to Cart button is clicked
+        $('.add-to-cart').click(function(e) {
+            e.preventDefault();  // Prevent the default form submission
+
+            var productId = $(this).data('product-id');  // Get the product ID from the data attribute
+
+            // Send an AJAX request to add the product to the cart
+            $.ajax({
+                url: '/add-to-cart/' + productId + '/',  // Ensure your URL matches the Django view
+                method: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'  // Include the CSRF token
+                },
+                success: function(response) {
+                    // Update the cart item count dynamically
+                    $('#cart-item-count').text(response.cart_item_count);
+                },
+                error: function() {
+                    alert('Failed to add product to cart. Please try again.');
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>

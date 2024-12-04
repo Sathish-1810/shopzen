@@ -951,15 +951,27 @@ button:hover {
     text-align: center;
     font-size: 2.5rem;
     color: #f9f9f9;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+.mycart h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #f9f9f9;
+    margin-top: 10px;
 }
 
+
 .mycart h2 {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     color: #ffffff;
-    margin-top: 20px;
+    margin-top: 1px;
     text-align: center;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden;    /* Hide the overflow */
+    text-overflow: ellipsis; /* Add ellipsis when text overflows */
+    width: 180px; /* Set a width for the container to control text overflow */
 }
+
 
 /* Cart item list */
 .mycart ul {
@@ -968,7 +980,7 @@ button:hover {
     display: flex;
    
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 10px;
     justify-content: center;
    
 }
@@ -2086,6 +2098,37 @@ span{
 .profile-menu:hover .dropdown {
     display: block;
 }
+.btn-secondary {
+    position: absolute;
+    background-color: #6c757d;   /* Gray background */
+    color: white;                 /* White text */
+    padding: 10px 10px;           /* Vertical and horizontal padding */
+    text-decoration: none; 
+    right:20px; 
+    height:50px;
+         /* Remove underline */
+    border-radius: 5px;           /* Rounded corners */
+    display: inline-block;        /* Ensure it behaves like a button */
+    font-size: 16px;              /* Font size */
+    font-weight: bold;            /* Bold text */
+    border: 2px solid transparent;/* Invisible border for better hover effect */
+    text-align: center;           /* Center text alignment */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+}
+#cart-item-count {
+    display: inline-block; /* Makes it behave like an inline element but still allows block-level styling */
+    font-weight: bold;
+    color: rgb(21, 241, 32);  /* Customize color */
+    margin-left: 5px;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;    /* Darker gray on hover */
+    border-color: #4e555b;        /* Slightly darker border */
+    color: #fff;                  /* Ensure text stays white */
+    text-decoration: none;        /* No underline on hover */
+}
+
 /* --------------------------------------------------------- */
 
 
@@ -2437,7 +2480,7 @@ span{
 .mycart {
     position: relative;
     top: 5rem;
-    left: 1%;
+    left: 19%;
     width: 100%;
     max-width: 1600px;
     margin: auto;
@@ -2469,7 +2512,7 @@ span{
 }
 #payNowButton {
     position: relative;
-    /*Toadjustfromright-center*/right: 65%;
+    /*Toadjustfromright-center*/right: 55%;
     /*Movetocenter*/transform: translateX(-40%);
       
     -webkit-transform: translateX(-50%);
