@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.db.models import Sum
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib.auth import logout
-
+from django.http import JsonResponse
 from datetime import timedelta, datetime
 from django.contrib.auth.decorators import login_required
 from .models import Product, TeamMember, Contact, CartItem
@@ -185,21 +186,104 @@ def contactus(request):
 
     return render(request, 'contactus.html')
 
+
+
+
+
+
+
+
+
+
+
+
+def cart_item_count(request):
+    if request.user.is_authenticated:
+        # Fetch all cart items for the logged-in user
+        cart_items = CartItem.objects.filter(user=request.user)
+        
+        # Calculate the total quantity of items
+        total_items = sum(item.quantity for item in cart_items)
+    else:
+        total_items = 0  # For unauthenticated users, set cart count to 0
+
+    # Return the count as a dictionary
+    return {'cart_item_count': total_items}
+
+
+
+
+
+@login_required
+def cart_item_count(request):
+    if request.user.is_authenticated:
+        # Calculate total cart items in one query
+        total_items = CartItem.objects.filter(user=request.user).aggregate(total_items=Sum('quantity'))['total_items'] or 0
+    else:
+        total_items = 0  # For unauthenticated users
+
+    return {'cart_item_count': total_items}
+
+
+
+
 # Add to Cart view
+
+@login_required
+
 @login_required
 def add_to_cart(request, product_id):
+    # Get the product
     product = get_object_or_404(Product, id=product_id)
-    cart_item, created = CartItem.objects.get_or_create(user=request.user, product=product)
-    if not created:
-        cart_item.quantity += 1
-        cart_item.save()
-    return redirect('cart_detail')
+
+    # For unauthenticated users, you may still want to use the session cart, but for now let's focus on authenticated users
+    if request.user.is_authenticated:
+        cart_item, created = CartItem.objects.get_or_create(
+            user=request.user,
+            product=product,
+        )
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
+    else:
+        # Session-based cart logic for unauthenticated users
+        cart = request.session.get('cart', {})
+
+        # If the product is already in the cart, increase the quantity, otherwise add it
+        if str(product.id) not in cart:
+            cart[str(product.id)] = 1
+        else:
+            cart[str(product.id)] += 1
+
+        # Save the updated cart back into the session
+        request.session['cart'] = cart
+
+    # Get the updated cart item count
+    cart_item_count = sum(cart.values()) if not request.user.is_authenticated else CartItem.objects.filter(user=request.user).aggregate(Sum('quantity'))['quantity__sum']
+
+    return JsonResponse({'cart_item_count': cart_item_count})
+
 
 # Cart Detail view
 @login_required
 def cart_detail(request):
-    cart_items = CartItem.objects.filter(user=request.user)
-    total_price = sum(item.get_total_price() for item in cart_items)
+    if request.user.is_authenticated:
+        # Get cart items from the database for authenticated users
+        cart_items = CartItem.objects.filter(user=request.user)
+        total_price = sum(item.product.price * item.quantity for item in cart_items)
+    else:
+        # Get cart items from the session for unauthenticated users
+        cart = request.session.get('cart', {})
+        cart_items = []
+        for product_id, quantity in cart.items():
+            product = get_object_or_404(Product, id=product_id)
+            cart_items.append({
+                'product': product,
+                'quantity': quantity,
+                'total_price': product.price * quantity,
+            })
+        total_price = sum(item['total_price'] for item in cart_items)
+
     return render(request, 'cart_detail.html', {'cart_items': cart_items, 'total_price': total_price})
 
 # Remove from Cart view
