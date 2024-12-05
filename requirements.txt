@@ -1,6 +1,6 @@
 asgiref==3.8.1
 distlib==0.3.8
-Django==5.0.4
+Django==4.2.4
 et_xmlfile==2.0.0
 Faker==26.0.0
 filelock==3.13.4
