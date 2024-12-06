@@ -1,6 +1,6 @@
 asgiref==3.8.1
 distlib==0.3.8
-Django==4.2.4
+Django==5.1.4
 et_xmlfile==2.0.0
 
 
@@ -9,7 +9,7 @@ pilo==0.6.2
 
 python-dateutil==2.9.0.post0
 pytz==2024.2
-
-sqlparse==0.4.4
+typing-extensions==4.12.2
+sqlparse==0.5.2
 tzdata==2024.1
 virtualenv==20.25.3
