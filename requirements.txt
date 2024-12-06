@@ -2,17 +2,14 @@ asgiref==3.8.1
 distlib==0.3.8
 Django==4.2.4
 et_xmlfile==2.0.0
-Faker==26.0.0
-filelock==3.13.4
 
-openpyxl==3.1.5
 
-pillow==10.4.0
+
 pilo==0.6.2
-platformdirs==4.2.0
+
 python-dateutil==2.9.0.post0
 pytz==2024.2
-six==1.16.0
+
 sqlparse==0.4.4
 tzdata==2024.1
 virtualenv==20.25.3
