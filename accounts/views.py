@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib.auth import logout
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from datetime import timedelta, datetime
 from django.contrib.auth.decorators import login_required
 from .models import Product, TeamMember, Contact, CartItem
@@ -22,6 +23,9 @@ def generate_otp():
 def home(request):
     return render(request, 'index.html')
 
+
+
+# Registration view
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -39,7 +43,8 @@ def register(request):
         else:
             # Create the user but keep them inactive until OTP verification
             user = User.objects.create_user(username=username, email=email, password=password1)
-            user.is_active = False
+            user.is_active = False  # Make user inactive initially
+            user.is_staff = True  # Make the user an admin (staff)
             user.save()
 
             otp = generate_otp()  # Generate OTP
@@ -62,7 +67,7 @@ def register(request):
                 print(e)  # Log the error for debugging
                 return redirect('register')
 
-            return redirect('verify_otp')
+            return redirect('verify_otp')  # Redirect to OTP verification page
 
     return render(request, 'registeration.html')
 # OTP Verification view
@@ -197,24 +202,7 @@ def contactus(request):
 
 
 
-def cart_item_count(request):
-    if request.user.is_authenticated:
-        # Fetch all cart items for the logged-in user
-        cart_items = CartItem.objects.filter(user=request.user)
-        
-        # Calculate the total quantity of items
-        total_items = sum(item.quantity for item in cart_items)
-    else:
-        total_items = 0  # For unauthenticated users, set cart count to 0
 
-    # Return the count as a dictionary
-    return {'cart_item_count': total_items}
-
-
-
-
-
-@login_required
 def cart_item_count(request):
     if request.user.is_authenticated:
         # Calculate total cart items in one query
@@ -222,14 +210,18 @@ def cart_item_count(request):
     else:
         total_items = 0  # For unauthenticated users
 
-    return {'cart_item_count': total_items}
+    return JsonResponse({'cart_item_count': total_items})
+
+
+
+
+
 
 
 
 
 # Add to Cart view
 
-@login_required
 
 @login_required
 def add_to_cart(request, product_id):

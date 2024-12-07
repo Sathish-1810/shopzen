@@ -118,11 +118,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
+import os
 
+# Static files (CSS, JavaScript, images)
+STATIC_URL = '/static/'  # URL for static files in the browser
+
+# Location of additional static files (during development)
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# Directory where static files will be collected for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 # Default primary key field type
@@ -139,3 +147,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('Email_HOST_USER')  # Email address
 EMAIL_HOST_PASSWORD = os.environ.get('Email_HOST_PASSWORD')  # Email password
 
+BASE_DIR = Path(__file__).resolve().parent.parent

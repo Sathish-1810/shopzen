@@ -5,6 +5,7 @@
       <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="icon" href="{% static 'favicon.jpg' %}" type="image/jpg">
         <title></title>
         <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
@@ -40,7 +41,7 @@
           
           {% if messages %}
             {% for message in messages %}
-              <p>{{ message }}</p>
+              <p class="message">{{ message }}</p>
             {% endfor %}
           {% endif %}
 

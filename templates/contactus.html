@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
-
+    <link rel="icon" href="{% static 'favicon.jpg' %}" type="image/jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -16,7 +16,7 @@
 <body>
  
 <div class = "contactusform">
-    <a href="#" id = "close" onclick = "homepage()"><i class="ri-close-large-line"></i></a>
+    <a href="{% url 'home' %}" ><i class="ri-close-large-fill"></i></a>
     <div id ="contact">  <h1 >Contact Us</h1> 
         
 <form method = 'POST' action = "{% url 'contactus' %}">

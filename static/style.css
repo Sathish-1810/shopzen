@@ -22,7 +22,7 @@ body {
   
     height: 100vh;
 }
-.ri-menu-line  {
+#menuIcon {
     display: none;
 }
 
@@ -98,7 +98,6 @@ body {
  
 
 }
-
 
 
 
@@ -519,22 +518,32 @@ button:hover {
    
 }
 
-#close {
+.contactusform a {
     position: absolute;
-    top: 10px;            /* Adjust for visibility */
-    right: 10px;          
-    color: white;         /* Ensure it's visible */
-    font-size: 30px;      
-    padding: 1px;        /* Increase clickable area */
-    background: #0000002d;   /* Pointer cursor for interactivity */
-    text-decoration: none;
-    user-select: none;
-    transition: color 0.3s ease;  /* Smooth hover effect */
+    top: 10px;                /* Adjust for visibility */
+    right: 10px;              /* Position in top-right corner */
+    color: white;             /* Icon color */
+    font-size: 30px;          /* Icon size */
+    padding: 15px;            /* Sufficient padding around the icon */
+    background: #0000002d;    /* Semi-transparent background */
+    text-decoration: none;    /* Remove underline from link */
+    user-select: none;        /* Prevent text selection */
+    border-radius: 50%;       /* Optional: rounded background */
+    transition: color 0.3s ease, background 0.3s ease; /* Smooth transition */
+    cursor: pointer;         /* Pointer cursor for interactivity */
+    display: flex;            /* Use flexbox to center the icon */
+    justify-content: center;  /* Center the icon horizontally */
+    align-items: center;      /* Center the icon vertically */
+    width: 40px;              /* Set a fixed width for the button */
+    height: 40px;             /* Set a fixed height for the button */
 }
 
-#close:hover {
-    color: red;           /* Highlight on hover */
+/* Hover effect */
+.contactusform a:hover {
+    color: #fff;              /* Hover text color */
+    background: #ff4747;      /* Background color on hover */
 }
+
 
 /* Heading styles */
 #contact h1 {
@@ -878,6 +887,12 @@ button:hover {
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
+/* Default styles for the close button */
+
+
+
+
+
 
 .contactusform button:hover {
     background-color: #45a049;        /* Darker green on hover */
@@ -2171,79 +2186,82 @@ span{
 }
     }
 
+
     .ri-menu-line {
         display: block;
         position: absolute;
-        top: 1rem;  /* Adjusted for better alignment */
-        right: 1rem;
-        font-size: 2rem;
+        top: 15px; /* Adjust for better alignment */
+        right: 20px; /* Move closer to the right edge */
+        font-size: 3rem; /* Slightly smaller for mobile */
         cursor: pointer;
-        padding: 10px;
-        user-select: none;
-        z-index: 11;  /* Ensure it stays above the menu */
+        padding: 5px; /* Smaller padding for compact design */
+        color: white;
+        z-index: 20; /* Stays above all other elements */
     }
-    
-    /* Navbar styling */
-    .navbar {
-        display: flex;
-        flex-direction: column;
-        background-color: #000000;
-        position: relative;  /* Ensure proper positioning for the menu icon */
-    }
-    
+
+    /* Navbar Menu */
     .navbar ul {
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: #794949;
+        background: #333; /* Darker shade for smaller screens */
         opacity: 0;
-        /*Initiallyhidden*/transform: translateY(-100%);
-        /*Moveitoutofview*/transition: transform 0.6s ease, opacity 0.6s ease;
+        transform: translateY(-100%);
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease;
         pointer-events: none;
-        /*Preventinteractionwhenhidden*/z-index: 10;
-        -webkit-transform: translateY(-100%);
-        -moz-transform: translateY(-100%);
-        -ms-transform: translateY(-100%);
-        -o-transform: translateY(-100%);
-}
- 
+        z-index: 10; /* Below the menu icon */
+    }
+
+    /* Active Menu */
     .navbar ul.active {
-        opacity: 1; /* Show the menu */
-        transform: translateY(0); /* Move it into view */
-        pointer-events: auto; /* Enable interaction */
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
     }
-    
+
+    /* List Items */
     .navbar ul li {
-        margin: 2rem 0;
+        width: 100%; /* Full width for better touch target */
+        margin: 1.5rem 0;
         text-align: center;
-        width: 100%;
-        padding: 0 50px;
     }
-    
+
+    /* Links Styling */
     .navbar ul li a {
-        display: block;
         color: white;
-        padding: 1rem;
+        padding: 1.5rem;
+        font-size: 1.2rem; /* Larger font for readability */
         text-decoration: none;
-        background: red;
+        display: block;
     }
-    
+
+    /* Link Hover */
     .navbar ul li a:hover {
         background: darkred;
     }
-    
-    #menuIcon {
-        display: inline-block;
-        font-size: 24px;  /* Adjust icon size */
-        cursor: pointer;
-        z-index: 20;
+
+    /* Navbar Container */
+    .navbar {
+        flex-direction: row; /* Keep row structure for menu icon alignment */
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px; /* Compact padding for mobile */
+        background-color: #000; /* Retain dark background */
     }
-    
+
+
+
+/* Menu Icon Positioning */
+#menuIcon {
+    display: inline-block;
+    font-size: 24px;  /* Adjust icon size */
+    cursor: pointer;
+    z-index: 20;  /* Ensure it stays above the menu */
+}
+
     
 
 /* 4444444444444 */
@@ -2282,9 +2300,9 @@ span{
 /* Right Main Section */
 .rightmain {
     padding: 1px;
-    margin: 200px 30px;
+    margin: 180px 1px;
     text-align: center;
-    width:80%;
+    width:90%;
 }
 
 /* Main Container (Categories Section) */
@@ -2449,12 +2467,17 @@ span{
 .filter-form {
     display: flex;
     flex-direction: row;
+    border: 2px solid red;
     justify-content: center;
+    font-size: 250px; /* Increase the font size for the form */
+    padding: 20px; /* Add padding for a more spacious layout */
 }
 
 .filter-form label {
-    margin-right: 15px;
+    margin-right: 25px; /* Increase the margin for spacing */
     display: flex;
+    font-size: 80px; /* Increase the font size for the labels */
+    font-weight: bold; /* Make the text bold for better visibility */
 }
 
 .product-cards {
@@ -2465,39 +2488,45 @@ span{
     flex-direction: row;   /* Stack cards vertically */
     align-items: center;
     gap: 10px;  
+    width:200px;
+
     
 }
 
 .product-card {
     width: 100%;               /* Card takes up most of the screen width */
     text-align: center;
-    width:140px;
-    height: 300px;
+    width:250px;
+    height: 400px;
+    padding:200px;
  
 }
 /* mycartikkada nundi start avuthundi */
     
 .mycart {
     position: relative;
-    top: 5rem;
-    left: 19%;
-    width: 100%;
-    max-width: 1600px;
-    margin: auto;
+  overflow-x: hidden;
+    margin-left: -5rem;
+    width: 80%;
+   
     
 }
 
 .mycart ul {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; /* Align items properly */
-    gap: 10px; /* Gap between items */
+    gap: 5px; /* Gap between items */
+    width:100%;
+   
+    
 }
 
 .mycart ul li {
-    width: calc(45.33% - 5px); /* Ensure 3 items per row */
+    width: calc(50.33% - 5px); /* Ensure 3 items per row */
     box-sizing: border-box; /* Include padding in the width */
-    padding: 10px; /* Padding for each item */
+    padding: 5px 0px; /* Padding for each item */
 }
 
 .mycart .cart-item img {
@@ -2506,13 +2535,20 @@ span{
     max-width: 90px; /* Ensure the images don't grow too large */
 }
 
-.mycart h1, .mycart h2 {
-    font-size: 1.2em; /* Slightly adjust heading size */
-    text-align: center; /* Center align headings */
+.mycart h1{
+    text-align: center;
+    font-size: 1.5rem;
 }
+.mycart h2 {
+    font-size: 1rem; /* Slightly adjust heading size */
+    text-align: center; /* Center align headings */
+    margin-right: 50px;
+    padding-right: 40px;
+}
+
 #payNowButton {
     position: relative;
-    /*Toadjustfromright-center*/right: 55%;
+    /*Toadjustfromright-center*/right: 100%;
     /*Movetocenter*/transform: translateX(-40%);
       
     -webkit-transform: translateX(-50%);
@@ -2757,18 +2793,22 @@ label {
     text-align: center; 
     
 }
-
+.message {
+    margin: 50px 85px;
+    padding: 10px;
+    border-radius: 5px;
+  }
 .loginform a {
     font-size: 14px;    
     /
 }
 
-#close {
-    position: absolute;    /* Fix close button position */
-    top: 10px;              /* Adjust distance from top */
-    right: 10px;            /* Adjust distance from right */
-    font-size: 20px;        /* Resize close icon */
+.contactusform a {
+    top: 5px;              /* Reduce the top margin for smaller screens */
+    right: 5px;            /* Reduce the right margin for smaller screens */
+    font-size: 20px;       /* Adjust the font size */
 }
+
 
 
 /* otpverification page styles */
