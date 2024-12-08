@@ -2,7 +2,8 @@ asgiref==3.8.1
 distlib==0.3.8
 Django==5.1.4
 et_xmlfile==2.0.0
-python==3.10
+
+
 
 
 pilo==0.6.2
