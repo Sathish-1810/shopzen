@@ -101,7 +101,6 @@ body {
 
 
 
-
 .main h2{
     color: rgb(121, 133, 100);
     font-family: Cormorant SC;
@@ -2163,7 +2162,7 @@ span{
 
 
 /* Mobile Sty/* Media query for screens smaller than 600px */
-@media (max-width: 695px) {
+@media (max-width: 795px) {
 
     /* Menu icon styling */
     @keyframes slideDown {
@@ -2187,74 +2186,73 @@ span{
 }
     }
 
-    /* Menu Icon Styling */
-.ri-menu-line {
-    display: block;
-    position: absolute;
-    top: 10px;  /* Adjusted for better alignment */
-    right: 1rem;
-    font-size: 4rem;
-    cursor: pointer;
-    padding: 10px;
-    color: white;
-    user-select: none;
-    z-index: 20;  /* Ensure it stays above the navbar */
-}
 
-/* Navbar Styling */
-.navbar {
-    display: flex;
-    flex-direction: column;
-    background-color: #000000;
-    position: relative;  /* Ensure proper positioning for the menu icon */
-}
+    .ri-menu-line {
+        display: block;
+        position: absolute;
+        top: 15px; /* Adjust for better alignment */
+        right: 20px; /* Move closer to the right edge */
+        font-size: 3rem; /* Slightly smaller for mobile */
+        cursor: pointer;
+        padding: 5px; /* Smaller padding for compact design */
+        color: white;
+        z-index: 20; /* Stays above all other elements */
+    }
 
-/* Navbar Menu */
-.navbar ul {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #4d5755;
-    opacity: 0;  /* Initially hidden */
-    transform: translateY(-100%);  /* Move it out of view */
-    transition: transform 0.6s ease, opacity 0.6s ease;
-    pointer-events: none;  /* Prevent interaction when hidden */
-    z-index: 10;  /* Make sure it's under the menu icon */
-}
+    /* Navbar Menu */
+    .navbar ul {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #82d809; /* Darker shade for smaller screens */
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease;
+        pointer-events: none;
+        z-index: 10; /* Below the menu icon */
+    }
 
-/* When the Menu is Active */
-.navbar ul.active {
-    opacity: 1;  /* Make it visible */
-    transform: translateY(0);  /* Bring it into view */
-    pointer-events: auto;  /* Enable interaction */
-}
+    /* Active Menu */
+    .navbar ul.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
 
-/* List Item Styling */
-.navbar ul li {
-    margin: 2rem 0;
-    text-align: center;
-    width: 100%;
-    padding: 0 50px;
-}
+    /* List Items */
+    .navbar ul li {
+        width: 100%; /* Full width for better touch target */
+        margin: 1.5rem 0;
+        text-align: center;
+    }
 
-/* Links Styling */
-.navbar ul li a {
-    display: block;
-    color: white;
-    padding: 1rem;
-    text-decoration: none;
-    background: rgb(0, 0, 0);
-}
+    /* Links Styling */
+    .navbar ul li a {
+        color: white;
+        padding: 1.5rem;
+        font-size: 1.2rem; /* Larger font for readability */
+        text-decoration: none;
+        display: block;
+    }
 
-/* Link Hover Effect */
-.navbar ul li a:hover {
-    background: darkred;
-}
+    /* Link Hover */
+    .navbar ul li a:hover {
+        background: darkred;
+    }
+
+    /* Navbar Container */
+    .navbar {
+        flex-direction: row; /* Keep row structure for menu icon alignment */
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px; /* Compact padding for mobile */
+        background-color: #000; /* Retain dark background */
+    }
+
+
 
 /* Menu Icon Positioning */
 #menuIcon {
@@ -2796,7 +2794,7 @@ label {
     
 }
 .message {
-    margin: 150px 85px;
+    margin: 50px 85px;
     padding: 10px;
     border-radius: 5px;
   }
@@ -2854,7 +2852,7 @@ label {
 }
 
 /* Media query for screens smaller than 695px */
-@media only screen and (max-width: 695px) {
+@media only screen and (max-width: 795px) {
     /* Adjust OTP verification form for smaller screens */
     .otpverification {
         width: 80%;

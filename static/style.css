@@ -2162,7 +2162,7 @@ span{
 
 
 /* Mobile Sty/* Media query for screens smaller than 600px */
-@media (max-width: 695px) {
+@media (max-width: 795px) {
 
     /* Menu icon styling */
     @keyframes slideDown {
@@ -2207,8 +2207,9 @@ span{
         left: 0;
         width: 100%;
         height: 100%;
-        background: #333; /* Darker shade for smaller screens */
+        background: #585a56; /* Darker shade for smaller screens */
         opacity: 0;
+      
         transform: translateY(-100%);
         transition: transform 0.4s ease-in-out, opacity 0.4s ease;
         pointer-events: none;
@@ -2225,30 +2226,33 @@ span{
     /* List Items */
     .navbar ul li {
         width: 100%; /* Full width for better touch target */
-        margin: 1.5rem 0;
+       padding-top: 3rem;
         text-align: center;
+        margin-top: 25px;
+       
     }
 
     /* Links Styling */
     .navbar ul li a {
         color: white;
-        padding: 1.5rem;
+        padding: 15px 1px;
         font-size: 1.2rem; /* Larger font for readability */
         text-decoration: none;
         display: block;
+        background: #000;
+        margin:10px 39px;
+       
     }
 
     /* Link Hover */
-    .navbar ul li a:hover {
-        background: darkred;
-    }
+   
 
     /* Navbar Container */
     .navbar {
         flex-direction: row; /* Keep row structure for menu icon alignment */
         justify-content: space-between;
         align-items: center;
-        padding: 10px 20px; /* Compact padding for mobile */
+        padding: 10px 10px; /* Compact padding for mobile */
         background-color: #000; /* Retain dark background */
     }
 
@@ -2261,12 +2265,22 @@ span{
     cursor: pointer;
     z-index: 20;  /* Ensure it stays above the menu */
 }
+.logo {
+    display: flex;
+    justify-content: center;  /* Center the content horizontally */
+    align-items: center;      /* Center the content vertically */
+    padding-bottom: 5px;     /* Add padding at the bottom */
+}
 
-    
+.logo img {
+    max-width: 100%;  /* Ensure the image does not overflow */
+    height: auto;     /* Maintain aspect ratio */
+}
+
 
 /* 4444444444444 */
 .main {
-    padding: 25px;
+    padding: 70px;
     margin: 15px 0;
     text-align: center;
     
@@ -2411,7 +2425,7 @@ span{
     padding: 15px;
     margin: 15px 0;
     text-align: center;
-    width:85%;
+    width:87%;
     margin-left: 1.5rem;
 }
 
@@ -2430,54 +2444,72 @@ span{
 
 /* Footer */
 .footer {
-   
-    padding: 0px;
+    padding: 0;
     text-align: center;
     margin: 0 2px;
-   
 }
-.footer-container{
+
+.footer-container {
     display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;  /* Stack the sections vertically */
+    justify-content: center; /* Center the content vertically */
+    align-items: center;     /* Center horizontally */
+    text-align: center;      /* Ensure text is centered */
 }
+
+.footer-sections {
+    display: flex;           /* Align sections side by side */
+    justify-content: space-around; /* Space between sections */
+    width: 100%;
+    margin-bottom: 1rem;     /* Add margin between sections */
+}
+
 .footer-section {
-   text-align: left;
-   font-size: 39px;
-   margin-left: 3rem;
-        /* Space between footer sections */
+    text-align: center;      /* Center the content inside each section */
+    font-size: 39px;
+    margin-bottom: 1rem;
+    width: 100%;             /* Make each section take full width of container */
 }
-.footer-section h4{
+
+.footer-section h4 {
     font-size: 1.5rem;
-    text-align: left;
     letter-spacing: 2px;
+    text-align: center;      /* Ensure section title is centered */
 }
+
 .footer-section a {
-    display: flex;
-  align-items: center;
-  margin-right: 2rem;
+    display: block;          /* Make links block-level for better alignment */
+    text-align: center;      /* Center the links */
+    margin: 0.5rem 0;        /* Space between the links */
 }
+
+.quick-links, .contact-us {
+    flex: 1;                 /* Take up equal space */
+    text-align: left;        /* Align text to the left for these sections */
+    padding: 0 2rem;         /* Add padding for spacing */
+}
+
+.quick-links a, .contact-us a {
+    margin-bottom: 0.5rem;   /* Space between each link */
+}
+
+
 #endpage{
-    margin-left: 0rem;
+    margin-left: 1.5rem;
 }
 
 /* products page startavuthunid */
 .filter-form {
-    display: flex;
-    flex-direction: row;
-    border: 2px solid red;
-    justify-content: center;
-    font-size: 250px; /* Increase the font size for the form */
-    padding: 20px; /* Add padding for a more spacious layout */
+    font-size: 15px; /* Increase the font size for mobile screens */
+    padding: 15px; /* Adjust padding for mobile screens */
+    flex-direction: column; /* Stack form elements vertically */
 }
 
 .filter-form label {
-    margin-right: 25px; /* Increase the margin for spacing */
-    display: flex;
-    font-size: 80px; /* Increase the font size for the labels */
-    font-weight: bold; /* Make the text bold for better visibility */
+    font-size: 20px; /* Increase the font size for labels on mobile */
+    margin-right: 0; /* Remove margin as elements will be stacked */
+    margin-bottom: 10px; /* Add margin below labels to space out vertically */
+    font-family:  monospace;
 }
 
 .product-cards {
@@ -2849,10 +2881,10 @@ label {
    left:0; /* Smaller logo size on small screens */
 }
 
-}
+
 
 /* Media query for screens smaller than 695px */
-@media only screen and (max-width: 695px) {
+
     /* Adjust OTP verification form for smaller screens */
     .otpverification {
         width: 80%;
@@ -2893,7 +2925,7 @@ label {
   
     /* Main content adjustments */
     .main {
-      padding: 5rem;                 /* Add padding */
+      padding: 1rem;                 /* Add padding */
       text-align: center;  
       height: 500px;
     
