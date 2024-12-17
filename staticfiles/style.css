@@ -2758,9 +2758,10 @@ label {
 .loginform {
     width: 90%;         
     padding: 15px;      
-    height: 350px;        
+    height: 400px;        
     box-shadow: none;   
-    margin: 20px auto;   
+  
+  
 }
 
 .loginform h2 {
