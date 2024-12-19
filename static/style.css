@@ -2289,7 +2289,7 @@ span{
     font-size: 40px;
     text-align: center;
     margin-left: 0; 
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     display: inline-block;
 }
 .main h2{
@@ -2464,12 +2464,39 @@ span{
     margin-bottom: 1rem;     /* Add margin between sections */
 }
 
-.footer-section {
+#fs1 {
     text-align: center;      /* Center the content inside each section */
     font-size: 39px;
     margin-bottom: 1rem;
-    width: 100%;             /* Make each section take full width of container */
+    width: 100%; 
+    margin-right: 25px;            /* Make each section take full width of container */
 }
+#fs1 h4{
+    margin-right: 50px;
+}
+
+#fs2 {
+    text-align: center;      /* Center the content inside each section */
+    font-size: 39px;
+    margin-bottom: 1rem;
+    width: 100%; 
+    margin-right: 40px;            /* Make each section take full width of container */
+}
+#fs2 h4{
+    margin-right: 40px;
+}
+
+#fs3 {
+    text-align: center;      /* Center the content inside each section */
+    font-size: 39px;
+    margin-bottom: 1rem;
+    width: 100%; 
+    margin-right: 40px;            /* Make each section take full width of container */
+}
+#fs3 h4{
+    margin-right: 45px;
+}
+
 
 .footer-section h4 {
     font-size: 1.5rem;
@@ -2495,7 +2522,7 @@ span{
 
 
 #endpage{
-    margin-left: 1.5rem;
+    margin-left:2px;
 }
 
 /* products page startavuthunid */
@@ -2792,7 +2819,7 @@ label {
     padding: 15px;      
     height: 350px;        
     box-shadow: none;   
-    margin: 20px auto;   
+    margin: auto;   
 }
 
 .loginform h2 {
